@@ -1,0 +1,154 @@
+Comandos do Docker:
+
+
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' [C_ID]
+
+
+Tutorial:
+	P1: 
+		docker run hello-world
+		docker --version
+		docker-machine -v
+		docker-composer -v
+
+	P2:
+		Dockerfile
+		app.py
+		requirements.txt
+		docker build -t friendlyhello .
+		docker images
+		docker run -p 4000:80 friendlyhello (http://localhost:4000)
+		docker run -d -p 4000:80 friendlyhello (-d = run in background)
+		docker container ls
+		docker stop <CONTAINER_ID>
+		docker login
+		docker tag image username/repository:tag
+		docker tag friendlyhello cantarino/docker_tutos:part2
+		docker image ls
+		docker images
+		docker push username/repository:tag
+		docker run -d -p 4000:80 cantarino/docker_tutos:latest
+		docker image rm <image_id> (locally)
+		
+		docker build -t friendlyname .                   # Create image using this directory's Dockerfile
+		docker run -p 4000:80 friendlyname               # Run "friendlyname" mapping port 4000 to 80
+		docker run -d -p 4000:80 friendlyname            # Same thing, but in detached mode (i.e. background)
+		docker container ls                              # List all running containers
+		docker container ls -a                           # List all containers, even those not running
+		docker container stop <hash>                     # Gracefully stop the specified container
+		docker container kill <hash>                     # Force shutdown of the specified container
+		docker container rm <hash>                       # Remove specified container from this machine
+		docker container rm $(docker container ls -a -q) # Remove all containers
+		docker image ls -a                               # List all images on this machine
+		docker image rm <image id>                       # Remove specified image from this machine
+		docker image rm $(docker image ls -a -q)         # Remove all images from this machine
+		docker login                                     # Log in this CLI session using your Docker credentials
+		docker tag <image> username/repository:tag       # Tag <image> for upload to registry
+		docker push username/repository:tag              # Upload tagged image to registry
+		docker run username/repository:tag               # Run image from a registry
+
+
+	P3: 
+		docker-compose.yml
+		docker swarm init
+		docker stack deploy -c docker-compose.yml <appname>
+		docker stack deploy -c docker-compose.yml getstartedlab (Can be re-run to refresh new configurations on docker-composer.yml)
+		docker stack ps getstartedlab
+		docker stack rm getstartedlab
+		docker node ls
+		docker swarm leave --force
+
+		docker stack ls                                 # List all running applications on this Docker host
+		docker stack deploy -c <composefile> <appname>  # Run the specified Compose file
+		docker stack services <appname>                 # List the services associated with an app
+		docker stack ps <appname>                       # List the running containers associated with an app
+		docker stack rm <appname>                       # Tear down an application
+
+	P4: 
+		docker-machine create --driver virtualbox myvm1
+		docker-machine create --driver virtualbox myvm2
+		docker-machine ssh myvm1 
+			docker swarm init
+			docker swarm init --advertise-addr 192.168.99.102:2377
+		docker-machine ssh myvm2 
+		docker swarm join --token SWMTKN-1-28wa2xvukcoudjc6yytgnhuzp15sib2sq5lpzc5s1fk0ru3rhd-21rsv66k8c8bic4u076qioz4g 192.168.99.102:2377
+		
+		docker-machine scp docker-compose.yml myvm1:~
+		docker-machine ssh myvm1 
+			docker stack deploy -c docker-compose.yml getstartedlab
+		docker-machine ssh myvm1 "docker stack ps getstartedlab"
+
+
+		docker-machine create -d hyperv --hyperv-virtual-switch "myswitch" myvm1 # Win10
+
+		docker-machine create --driver virtualbox myvm1                 # Create a VM (Mac, Win7, Linux)
+		docker-machine env myvm1                                        # View basic information about your node
+		docker-machine ssh myvm1 "docker node ls"                       # List the nodes in your swarm
+		docker-machine ssh myvm1 "docker node inspect <node ID>"        # Inspect a node
+		docker-machine ssh myvm1 "docker swarm join-token -q worker"    # View join token
+		docker-machine ssh myvm1                                        # Open an SSH session with the VM; type "exit" to end
+		docker-machine ssh myvm2 "docker swarm leave"                   # Make the worker leave the swarm
+		docker-machine ssh myvm1 "docker swarm leave -f"                # Make master leave, kill swarm
+		docker-machine start myvm1                                      # Start a VM that is currently not running
+		docker-machine stop $(docker-machine ls -q)                     # Stop all running VMs
+		docker-machine rm $(docker-machine ls -q)                       # Delete all VMs and their disk images
+		docker-machine scp docker-compose.yml myvm1:~                   # Copy file to node's home dir
+		docker-machine ssh myvm1 "docker stack deploy -c <file> <app>”. # Deploy an app
+
+
+	P5: 
+
+
+
+
+
+
+
+	P6: 
+
+
+
+
+
+
+$ docker images = docker image ls
+lista as imagens no computador.
+
+$ docker ps 
+lista os Containers em execução.
+
+$ docker build [OPTIONS] PATH | URL | -
+
+$ docker build . 
+Constrói a imagem a partir do Dockerfile da pasta em que se está.
+
+$ docker build -t linuxtips/apache:1.0 .
+
+
+$ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+
+$ docker run -it linuxtips/apache:1.0 /bin/bash
+
+Run a command in a new container. Roda o Container de acordo com as opções passadas e executa o comando passado.
+
+
+$ docker stop <ID_CONTAINER>
+Para a execução de um Container passando o ID como parâmetro.
+
+$ docker stop $(docker ps -a -q)
+Para a execução de TODOS os Containers
+
+$ docker rm <ID_CONTAINER>
+Deleta o Container passando o ID como parâmetro.
+
+$ docker rm $(docker ps -a -q)
+Deleta TODOS os Containers
+
+
+
+
+Extreme Programming
+
+
+

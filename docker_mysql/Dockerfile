@@ -9,7 +9,7 @@ ENV MYSQL_DATABASE="gacoss"
 ENV MYSQL_USER="user"
 ENV MYSQL_PASSWORD="user12345"
 ENV MYSQL_ROOT_PASSWORD="root"
-ENV MYSQL_ROOT_HOST=%
+#ENV MYSQL_ROOT_HOST=%
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN chown -R mysql:root /var/lib/mysql/

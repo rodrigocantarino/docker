@@ -2,7 +2,7 @@ FROM ubuntu
 
 LABEL maintainer="Rodrigo Cantarino <rodrigopcantarino@gmail.com>"
 
-ENV TZ=Europe/Dublin
+ENV TZ=America/Sao_Paulo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get install -y \

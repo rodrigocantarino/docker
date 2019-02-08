@@ -17,7 +17,7 @@ upload_max_filesize **10M** \
 
 ###### Using docker in command line
 ```
-    $ docker run -d -v [host_path]/web:/var/www/html -p [host_port]:80 cantarino/docker_php7
+    $ docker run -d -v [host_path]/web:/var/www/html -p [host_port]:80 cantarino/php7
 ```
 ###### Using docker-compose
 ```
@@ -42,7 +42,7 @@ For exemple the Yii Framework, the DocumentRoot needs to point to **web** folder
     version: '3' \
     services: \
         webphp: \
-        image: cantarino/docker_php7 \
+        image: cantarino/php7 \
         ports: \
             - "[host_port]:80" \
         volumes: \

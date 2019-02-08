@@ -1,10 +1,10 @@
-# docker_mysql
+# mysql
 ```
-docker run -p 3306:3306 -p 33060:33060 --name=mysql_cct -d cantarino/docker_mysql
-```
-```
-docker exec -it mysql_cct mysql -uroot -p
+docker run -p 3306:3306 -p 33060:33060 --name=gacoss -d cantarino/mysql
 ```
 ```
-docker restart mysql_cct
+docker exec -it mysql_gacoss mysql -uroot -p
+```
+```
+docker restart mysql_gacoss
 ```

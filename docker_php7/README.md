@@ -24,7 +24,7 @@ upload_max_filesize **10M** \
     version: '3' \
     services: \
         webphp: \
-        image: cantarino/docker_php7 \
+        image: cantarino/php7 \
         ports: \
             - "[host_port]:80" \
         volumes: \
